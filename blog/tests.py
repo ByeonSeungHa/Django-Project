@@ -1,7 +1,7 @@
 from django.test import TestCase, Client
 from bs4 import BeautifulSoup
 from django.contrib.auth.models import User
-from .models import Post, Category
+from .models import Post, Category, Tag
 
 
 class TestView(TestCase):
@@ -15,12 +15,17 @@ class TestView(TestCase):
         self.category_돼지고기 = Category.objects.create(name='돼지고기', slug='돼지고기')
         self.category_애완멍멍이 = Category.objects.create(name='애완멍멍이', slug='애완멍멍이')
 
+        self.tag_python_kor = Tag.objects.create(name='고기연구', slug='고기연구')
+        self.tag_python = Tag.objects.create(name='소고기', slug='소고기')
+        self.tag_hello = Tag.objects.create(name='다른고기', slug='다른고기')
+
         self.post_001 = Post.objects.create(
             title='첫 번째 포스트입니다.',
             content='Hello World. We are the world.',
             category=self.category_돼지고기,
             author=self.user_trump
         )
+        self.post_001.tags.add(self.tag_hello)
 
         self.post_002 = Post.objects.create(
             title='두 번째 포스트입니다.',
@@ -34,7 +39,8 @@ class TestView(TestCase):
             content='아무도 없쒀',
             author=self.user_obama
         )
-
+        self.post_003.tags.add(self.tag_python_kor)
+        self.post_003.tags.add(self.tag_python)
 
 
     def navbar_test(self, soup):
@@ -82,14 +88,29 @@ class TestView(TestCase):
         post_001_card = main_area.find('div', id='post-1')
         self.assertIn(self.post_001.title, post_001_card.text)
         self.assertIn(self.post_001.category.name, post_001_card.text)
+        self.assertIn(self.post_001.author.username.upper(), post_001_card.text)
+        self.assertIn(self.tag_hello.name, post_001_card.text)
+        self.assertNotIn(self.tag_python.name, post_001_card.text)
+        self.assertNotIn(self.tag_python_kor.name, post_001_card.text)
+
 
         post_002_card = main_area.find('div', id='post-2')
         self.assertIn(self.post_002.title, post_002_card.text)
         self.assertIn(self.post_002.category.name, post_002_card.text)
+        self.assertIn(self.post_002.author.username.upper(), post_002_card.text)
+        self.assertNotIn(self.tag_hello.name, post_002_card.text)
+        self.assertNotIn(self.tag_python.name, post_002_card.text)
+        self.assertNotIn(self.tag_python_kor.name, post_002_card.text)
+
 
         post_003_card = main_area.find('div', id='post-3')
         self.assertIn('아무도 없쒀', post_003_card.text)
         self.assertIn(self.post_003.title, post_003_card.text)
+        self.assertIn(self.post_003.author.username.upper(), post_003_card.text)
+        self.assertNotIn(self.tag_hello.name, post_003_card.text)
+        self.assertIn(self.tag_python.name, post_003_card.text)
+        self.assertIn(self.tag_python_kor.name, post_003_card.text)
+
 
         self.assertIn(self.user_trump.username.upper(), main_area.text)
         self.assertIn(self.user_obama.username.upper(), main_area.text)
@@ -194,6 +215,10 @@ class TestView(TestCase):
 
         # 2.6 첫 번째 포스트의 내용(content)이 포스트 영역에 있다.
         self.assertIn(self.post_001.content, post_area.text)
+
+        self.assertIn(self.tag_hello.name, post_area.text)
+        self.assertNotIn(self.tag_python.name, post_area.text)
+        self.assertNotIn(self.tag_python_kor.name, post_area.text)
 
 
 
