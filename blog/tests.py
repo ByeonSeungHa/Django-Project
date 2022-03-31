@@ -12,6 +12,9 @@ class TestView(TestCase):
 
         self.user_obama = User.objects.create_user(username='obama', password='34')
 
+        self.user_obama.is_staff = True
+        self.user_obama.save()
+
         self.category_돼지고기 = Category.objects.create(name='돼지고기', slug='돼지고기')
         self.category_애완멍멍이 = Category.objects.create(name='애완멍멍이', slug='애완멍멍이')
 
@@ -260,8 +263,14 @@ class TestView(TestCase):
         response = self.client.get('/blog/create_post/')
         self.assertNotEqual(response.status_code, 200)
 
-        # 로그인을 한다.
-        self.client.login(username='trump', password='12')
+        # staff가 아닌 trump가 로그인을 한다.
+        self.client.login(username='turmp', password='12')
+        response = self.client.get('/blog/crate_post/')
+        self.assertNotEqual(response.status_code, 200)
+
+
+        # 로그인을 한다. -> 오바마로 바꾼다.
+        self.client.login(username='obama', password='34')
         response = self.client.get('/blog/create_post/')
         self.assertEqual(response.status_code, 200)
         soup = BeautifulSoup(response.content, 'html.parser')
@@ -280,5 +289,5 @@ class TestView(TestCase):
         self.assertEqual(Post.objects.count(), 4)
         last_post = Post.objects.last()
         self.assertEqual(last_post.title, "Post Form 만들기")
-        self.assertEqual(last_post.author.username, 'trump')
+        self.assertEqual(last_post.author.username, 'obama')
 # Create your tests here.
