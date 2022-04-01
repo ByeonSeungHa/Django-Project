@@ -414,4 +414,6 @@ class TestView(TestCase):
         self.assertIn('obama', new_comment_div.text)
         self.assertIn('오바마의 댓글입니다.', new_comment_div.text)
 
+
+# 483P 부터 테스트 타이핑 PASS
 # Create your tests here.
