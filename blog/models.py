@@ -12,6 +12,8 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+    class Meta:
+        verbose_name_plural = 'Categories'
 
     def get_absolute_url(self):
         return f'/blog/category/{self.slug}/'
