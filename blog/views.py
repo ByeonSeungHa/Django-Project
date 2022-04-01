@@ -37,6 +37,7 @@ class PostCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
         if current_user.is_authenticated and (current_user.is_staff or current_user.is_superuser):
             form.instance.author = current_user
             response = super(PostCreate, self).form_valid(form)
+
             tags_str = self.request.POST.get('tags_str')
             if tags_str:
                 tags_str = tags_str.strip()
