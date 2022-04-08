@@ -1,20 +1,200 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>취한돼지다!!!</title>
+    <title>취한 돼지 사이트</title>
+
+    <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}" media="screen">
+
+    <link rel="stylesheet" href="{% static 'single_pages/css/about_me.css' %}" media="screen">
+
+    <script src="https://kit.fontawesome.com/3e4cbd00ba.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
 
-<nav>
-    <a href="/blog/">Blog</a>
-    <a href="/about_me/">About me</a>
-</nav>
+{% include 'blog/navbar.html' %}
 
-<h1>반갑다!! 취한돼지다!!</h1>
-<h2>꿀꿀!!!</h2>
-<h2>돼지파워!!!</h2>
-<h3>멋쪄!!!!!</h3>
+<section>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-8">
+                <h1>반갑다! 취한 돼지라고 한다!</h1>
+                <br/>
+                <p class="lead">
+                    돼지는 고기를 좋아합니다.<br/>
+                    물론 돼지 고기를 제일 좋아합니다.끠에에엑
+                </p>
+
+                <ul>
+                    <li>고기가 맛있는 이유는?</li>
+                    <ul>
+                        <li>크고 두툼한 삼겹살!!!</li>
+                        <li>물 먹이지 않아서 기름이 적다!</li>
+                    </ul>
+                    <li>주요 요리들은?</li>
+                    <ul>
+                        <li>볶아 먹는 불고기!!</li>
+                        <li>삶아 먹는 수육!!</li>
+                        <li>구워 먹는 삼격살!!</li>
+                        <li>구워 먹는 삼격살!!</li>
+                        <li>끓여 먹는 국밥!!</li>
+                    </ul>
+                    <li>맛있겠다!!!!!</li>
+                    <ul>
+                        <li>오늘 저녁은 고기다!!!</li>
+                    </ul>
+                </ul>
+            </div>
+            <div class="col-lg-4">
+                <img class="img-fluid" src="{% static 'single_pages/images/취한돼지 캐릭터.png' %}">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-light margin-for-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>돼지 소식</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card" data-toggle="modal" data-target="#pig_good">
+                    <img class="card-img-top" src="{% static 'single_pages/images/삼겹살구이.jpg' %}">
+                    <div class="card-body">
+                        <h5 class="card-title">돼지 고기 보쌈[고기는 언제나 옳다!!]</h5>
+                        <p>돼지 고기 삼겹살은 구우면 츄릅...오늘 저녁은 삼겹살이다!!!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card" data-toggle="modal" data-target="#pig_great">
+                    <img class="card-img-top" src="{% static 'single_pages/images/보쌈.jpg' %}">
+                    <div class="card-body">
+                        <h5 class="card-title">돼지 고기 보쌈[고기는 언제나 옳다!!]</h5>
+                        <p>돼지 고기 삼겹살은 삶아도!! 츄릅...오늘 저녁은 보쌈이다!!!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card" data-toggle="modal" data-target="#pig_nice">
+                    <img class="card-img-top" src="{% static 'single_pages/images/불고기.jpg' %}">
+                    <div class="card-body">
+                        <h5 class="card-title">돼지 고기 볶아먹기 [고기는 언제나 옳다!!!]</h5>
+                        <p>돼지 고기는 볶아도... 츄릅...오늘 저녁은 불고기다!!!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="pig_good" tabindex="-1" role="dialog" aria-labelledby="pigGoodModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="piggoodModalLabel">돼지 고기 삼겹살 굽기 [고기는 언제나 옳다!]</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <img class="img-fluid" src="{% static 'single_pages/images/삼겹살구이.jpg' %}">
+                    </div>
+                    <div class="col-lg-5">
+                        <p>돼지 고기 삼겹살은 구우면 츄릅...오늘 저녁은 삼겹살이다!!!</p>
+                        <button type="button" class="btn btn-light"><i class="fas fa-chalkboard-teacher"></i> 삼겹살</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="pig_great" tabindex="-1" role="dialog" aria-labelledby="piggreatModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id=" piggreatModalLabel">돼지 고기 보쌈[고기는 언제나 옳다!!]</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <img class="img-fluid" src="{% static 'single_pages/images/보쌈.jpg' %}">
+                    </div>
+                    <div class="col-lg-5">
+                        <p>돼지 고기 삼겹살은 삶아도!! 츄릅...오늘 저녁은 보쌈이다!!!</p>
+                        <button type="button" class="btn btn-light"><i class="fas fa-chalkboard-teacher"></i> 보쌈</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="pig_nice" tabindex="-1" role="dialog" aria-labelledby="pigNiceModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id=" pigNiceModalLabel">돼지 고기 볶아먹기 [고기는 언제나 옳다!!!]</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <img class="img-fluid" src="{% static 'single_pages/images/불고기.jpg' %}">
+                    </div>
+                    <div class="col-lg-5">
+                        <p>돼지 고기는 볶아도... 츄릅...오늘 저녁은 불고기다!!!</p>
+                        <button type="button" class="btn btn-light"><i class="fas fa-chalkboard-teacher"></i> 불고기</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="fixed-bottom">
+    {% include 'blog/footer.html' %}
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
 
 </body>
 </html>
