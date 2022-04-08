@@ -63,6 +63,13 @@ class Post(models.Model):
     def get_content_markdown(self):
         return markdown(self.content)
 
+    def get_avatar_url(self):
+        if self.author.socialaccount_set.exists():
+            return self.author.socialaccount_set.first().get_avatar_url()
+        else:
+            return f'https://doitdjango.com/avatar/id/792/9168845172e84db7/svg/{self.author.email}'
+
+
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -80,4 +87,4 @@ class Comment(models.Model):
         if self.author.socialaccount_set.exists():
             return self.author.socialaccount_set.first().get_avatar_url()
         else:
-            return f'https://doitdjango.com/avatar/id/792/601101937f1b3159/svg/{self.author.email}'
+            return f'https://doitdjango.com/avatar/id/792/9168845172e84db7/svg/{self.author.email}'
